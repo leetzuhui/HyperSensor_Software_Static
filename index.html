@@ -48,12 +48,10 @@
 
   <script>
     // Append a timestamp to the URL to force browser to fetch the latest file
-    fetch('https://raw.githubusercontent.com/leetzuhui/DuXin_Version_History/main/version_history.json?t=' + new Date()
-        .getTime())
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
+    fetch('https://raw.githubusercontent.com/leetzuhui/DuXin_Version_History/main/version_history.json', {
+        cache: 'no-store'
       })
+      .then(response => response.json())
       .then(data => {
         const versionContainer = document.getElementById('version-container');
         versionContainer.innerHTML = '';
