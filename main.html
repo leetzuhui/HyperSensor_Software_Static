@@ -1,86 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Version History</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Version History</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
 
-        .version-history {
-            max-width: 75%;
-            margin: 0 auto;
-        }
+    .version-history {
+      max-width: 75%;
+      margin: 0 auto;
+    }
 
-        .version {
-            background-color: #f4f4f4;
-            border-radius: 5px;
-            padding: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
+    .version {
+      background-color: #f4f4f4;
+      border-radius: 5px;
+      padding: 10px;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
 
-        .version h3 {
-            margin: 0;
-        }
+    .version h3 {
+      margin: 12px 0;
+    }
 
-        .version p {
-            margin: 5px 0 0;
-        }
+    .version p {
+      margin: 5px 0 0;
+    }
 
-        .loading {
-            text-align: left;
-            font-size: 18px;
-        }
-    </style>
+    .loading {
+      text-align: left;
+      font-size: 18px;
+    }
+  </style>
 </head>
+
 <body>
 
-<div class="version-history">
+  <div class="version-history">
     <h1>DuXin Software Update Version History</h1>
     <div id="version-container" class="loading">Loading version history...</div>
-</div>
+  </div>
 
-<script>
+  <script>
     // Load JSON data from a local file or a URL
     fetch('https://raw.githubusercontent.com/leetzuhui/DuXin_Version_History/main/version_history.json')
-        .then(response => response.json())
-        .then(data => {
-            const versionContainer = document.getElementById('version-container');
-            versionContainer.innerHTML = '';
+      .then(response => response.json())
+      .then(data => {
+        const versionContainer = document.getElementById('version-container');
+        versionContainer.innerHTML = '';
 
-            // Iterate over the version data and create HTML elements
-            data.versions.forEach(version => {
-                const versionDiv = document.createElement('div');
-                versionDiv.classList.add('version');
-                
-                const versionTitle = document.createElement('h3');
-                versionTitle.textContent = `Version: ${version.version}`;
-                versionDiv.appendChild(versionTitle);
-                
-                const datetimePara = document.createElement('p');
-                datetimePara.textContent = `Release DateTime: ${version.datetime}`;
-                versionDiv.appendChild(datetimePara);
-                
-                const descriptionsPara = document.createElement('p');
-                descriptionsPara.textContent = `Descriptions: ${version.descriptions}`;
-                versionDiv.appendChild(descriptionsPara);
+        // Iterate over the version data and create HTML elements
+        data.versions.forEach(version => {
+          const versionDiv = document.createElement('div');
+          versionDiv.classList.add('version');
 
-                const idPara = document.createElement('p');
-                idPara.textContent = `Id: ${version.id}`;
-                versionDiv.appendChild(idPara);
+          const versionTitle = document.createElement('h3');
+          versionTitle.textContent = `Version: ${version.version}`;
+          versionDiv.appendChild(versionTitle);
 
-                versionContainer.appendChild(versionDiv);
-            });
-        })
-        .catch(error => {
-            console.error('Error loading version history:', error);
-            document.getElementById('version-container').innerHTML = 'Failed to load version history.';
+          const datetimePara = document.createElement('p');
+          datetimePara.textContent = `Release DateTime: ${version.datetime}`;
+          versionDiv.appendChild(datetimePara);
+
+          const descriptionsPara = document.createElement('p');
+          descriptionsPara.textContent = `Descriptions: ${version.descriptions}`;
+          versionDiv.appendChild(descriptionsPara);
+
+          const idPara = document.createElement('p');
+          idPara.textContent = `Id: ${version.id}`;
+          versionDiv.appendChild(idPara);
+
+          versionContainer.appendChild(versionDiv);
         });
-</script>
+      })
+      .catch(error => {
+        console.error('Error loading version history:', error);
+        document.getElementById('version-container').innerHTML = 'Failed to load version history.';
+      });
+  </script>
 
 </body>
+
 </html>
