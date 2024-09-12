@@ -1,0 +1,23 @@
+{
+  "versions": [{
+      "version": "1.0.0",
+      "date": "2023-01-15",
+      "details": "Initial release with basic features."
+    },
+    {
+      "version": "1.1.0",
+      "date": "2023-03-10",
+      "details": "Added user authentication and profile management."
+    },
+    {
+      "version": "1.2.0",
+      "date": "2023-06-05",
+      "details": "Improved UI design and performance optimization."
+    },
+    {
+      "version": "2.0.0",
+      "date": "2023-09-12",
+      "details": "Major update with a new dashboard and analytics features."
+    }
+  ]
+}
