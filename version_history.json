@@ -1,5 +1,11 @@
 {
   "versions": [{
+      "version": "September 24, 2024 Version (2.0.5)",
+      "datetime": "Tuesday, September 24, 2024 3:33 PM",
+      "descriptions": "Updated WriteSensorReg m_byI2cMode in AutoTest and EzPass.",
+      "id": "d0139aca1ae0700f10a09c58bda67bfeaa1b277a"
+    },
+    {
       "version": "September 12, 2024 Version (2.0.4)",
       "datetime": "Thursday, September 12, 2024 11:49 AM",
       "descriptions": "Added version history.",
