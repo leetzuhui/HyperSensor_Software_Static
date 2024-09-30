@@ -1,5 +1,10 @@
 {
   "versions": [{
+      "version": "September 30, 2024 Version (2.0.6)",
+      "datetime": "Monday, September 30, 2024 1:12 PM",
+      "descriptions": "Added SensorIni.m_tab.type judgement (convertMIPI_RAW10_to_Mat32FC1, convertMIPI_RAW12_to_Mat32FC1).",
+      "id": "c50cdf4e79b0ba56341440afd6eaec2f0754a239"
+    },{
       "version": "September 24, 2024 Version (2.0.5)",
       "datetime": "Tuesday, September 24, 2024 3:33 PM",
       "descriptions": "Updated WriteSensorReg m_byI2cMode in AutoTest and EzPass.",
