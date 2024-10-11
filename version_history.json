@@ -1,5 +1,10 @@
 {
   "versions": [{
+      "version": "October 11, 2024 Version (2.1.0)",
+      "datetime": "Friday, October 11, 2024 5:16 PM",
+      "descriptions": "Added 'MIPI Settings + MIPI Control' Section",
+      "id": "ac24db95f270bd86bdc28a386f739999f1f19129"
+    },{
       "version": "September 30, 2024 Version (2.0.6)",
       "datetime": "Monday, September 30, 2024 1:12 PM",
       "descriptions": "Added SensorIni.m_tab.type judgement (convertMIPI_RAW10_to_Mat32FC1, convertMIPI_RAW12_to_Mat32FC1).",
