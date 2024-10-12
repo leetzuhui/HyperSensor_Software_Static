@@ -9,6 +9,7 @@
     body {
       font-family: Arial, sans-serif;
       margin: 20px;
+      background-color: rgba(245, 245, 247, 0.9);
     }
 
     .version-history {
@@ -17,7 +18,7 @@
     }
 
     .version {
-      background-color: #f4f4f4;
+      background-color: rgba(210, 210, 215,0.64)
       border-radius: 10px;
       padding: 15px;
       margin-bottom: 20px;
@@ -27,13 +28,14 @@
     }
 
     .version h3 {
+      font-size: 25px;
       margin: 12px 0;
     }
 
     .version p {
       margin: 5px 0 0;
       display: none;
-      font-size: 14px;
+      font-size: 18px;
       color: #333;
     }
 
@@ -69,8 +71,10 @@
         const versionContainer = document.getElementById('version-container');
         versionContainer.innerHTML = '';
 
+        let latestVersionDiv = null;
+
         // Iterate over the version data and create HTML elements
-        data.versions.forEach(version => {
+        data.versions.forEach((version, index) => {
           const versionDiv = document.createElement('div');
           versionDiv.classList.add('version');
 
@@ -90,9 +94,24 @@
           idPara.textContent = `Id: ${version.id}`;
           versionDiv.appendChild(idPara);
 
+          // If it's the first (latest) version, automatically open it
+          if (index === 0) {
+            versionDiv.classList.add('open');
+            latestVersionDiv = versionDiv; // Save reference to latest version div
+          }
+
           // Add click event listener to toggle open/close details
           versionDiv.addEventListener('click', () => {
+            // Close any currently open version
+            if (latestVersionDiv && latestVersionDiv !== versionDiv) {
+              latestVersionDiv.classList.remove('open');
+            }
+
+            // Toggle the clicked version's open state
             versionDiv.classList.toggle('open');
+
+            // Update the latest open div
+            latestVersionDiv = versionDiv.classList.contains('open') ? versionDiv : null;
           });
 
           versionContainer.appendChild(versionDiv);
