@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Version History</title>
+  <title>Software Version History</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -23,41 +23,44 @@
       margin-bottom: 20px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
       transition: all 0.3s ease;
-      position: relative;
       cursor: pointer;
     }
 
-    .version h3 {
-      margin: 12px 0;
-      display: inline-block;
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 25px;
     }
 
-    .version p {
-      margin: 5px 0 0;
-      display: none;
-      font-size: 14px;
-      color: #333;
-    }
-
-    .version.open p {
-      display: block;
-    }
-
-    .version:hover {
-      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    .header h3 {
+      margin: 18px 0;
     }
 
     .accordion-icon {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
       font-size: 16px;
       transition: transform 0.3s ease;
     }
 
     .version.open .accordion-icon {
-      transform: translateY(-50%) rotate(180deg);
+      transform: rotate(180deg);
+    }
+
+    .detail {
+      margin-top: 10px;
+      overflow: hidden;
+      height: 0;
+      opacity: 0;
+    }
+
+    .detail p {
+      margin: 5px 0;
+      font-size: 18px;
+      color: #333;
+    }
+
+    .version:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     }
 
     .loading {
@@ -70,7 +73,7 @@
 <body>
 
   <div class="version-history">
-    <h1>DuXin Software Version History</h1>
+    <h1>Software Version History</h1>
     <div id="version-container" class="loading">Loading version history...</div>
   </div>
 
@@ -93,49 +96,62 @@
           const versionDiv = document.createElement('div');
           versionDiv.classList.add('version');
 
+          // Create header for version title and accordion icon
+          const headerDiv = document.createElement('div');
+          headerDiv.classList.add('header');
+
           const versionTitle = document.createElement('h3');
           versionTitle.textContent = `${version.version}`;
-          versionDiv.appendChild(versionTitle);
+          headerDiv.appendChild(versionTitle);
 
           const accordionIcon = document.createElement('span');
           accordionIcon.classList.add('accordion-icon');
           accordionIcon.innerHTML = '▼'; // Default arrow icon (down)
-          versionDiv.appendChild(accordionIcon);
+          headerDiv.appendChild(accordionIcon);
+
+          versionDiv.appendChild(headerDiv);
+
+          // Create detail section for version details
+          const detailDiv = document.createElement('div');
+          detailDiv.classList.add('detail');
 
           const datetimePara = document.createElement('p');
           datetimePara.textContent = `Release DateTime: ${version.datetime}`;
-          versionDiv.appendChild(datetimePara);
+          detailDiv.appendChild(datetimePara);
 
           const descriptionsPara = document.createElement('p');
           descriptionsPara.textContent = `Descriptions: ${version.descriptions}`;
-          versionDiv.appendChild(descriptionsPara);
+          detailDiv.appendChild(descriptionsPara);
 
           const idPara = document.createElement('p');
           idPara.textContent = `Id: ${version.id}`;
-          versionDiv.appendChild(idPara);
+          detailDiv.appendChild(idPara);
+
+          versionDiv.appendChild(detailDiv);
 
           // If it's the first (latest) version, automatically open it
           if (index === 0) {
             versionDiv.classList.add('open');
-            gsap.to(versionDiv.querySelectorAll('p'), { height: 'auto', duration: 0.5, opacity: 1 });
+            gsap.to(detailDiv, { height: 'auto', duration: 0.5, opacity: 1 });
             latestVersionDiv = versionDiv;
           }
 
           // Add click event listener to toggle open/close details with GSAP animation
-          versionDiv.addEventListener('click', () => {
+          headerDiv.addEventListener('click', () => {
             // Close any currently open version
             if (latestVersionDiv && latestVersionDiv !== versionDiv) {
-              gsap.to(latestVersionDiv.querySelectorAll('p'), { height: 0, duration: 0.5, opacity: 0 });
+              const previousDetail = latestVersionDiv.querySelector('.detail');
+              gsap.to(previousDetail, { height: 0, duration: 0.5, opacity: 0 });
               latestVersionDiv.classList.remove('open');
             }
 
             // Toggle the clicked version's open state
             if (versionDiv !== latestVersionDiv) {
               versionDiv.classList.add('open');
-              gsap.to(versionDiv.querySelectorAll('p'), { height: 'auto', duration: 0.5, opacity: 1 });
+              gsap.to(detailDiv, { height: 'auto', duration: 0.5, opacity: 1 });
               latestVersionDiv = versionDiv;
             } else {
-              gsap.to(versionDiv.querySelectorAll('p'), { height: 0, duration: 0.5, opacity: 0 });
+              gsap.to(detailDiv, { height: 0, duration: 0.5, opacity: 0 });
               versionDiv.classList.remove('open');
               latestVersionDiv = null;
             }
