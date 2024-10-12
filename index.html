@@ -18,10 +18,12 @@
 
     .version {
       background-color: #f4f4f4;
-      border-radius: 5px;
-      padding: 10px;
+      border-radius: 10px;
+      padding: 15px;
       margin-bottom: 20px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      cursor: pointer;
     }
 
     .version h3 {
@@ -30,6 +32,17 @@
 
     .version p {
       margin: 5px 0 0;
+      display: none;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .version.open p {
+      display: block;
+    }
+
+    .version:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     }
 
     .loading {
@@ -76,6 +89,11 @@
           const idPara = document.createElement('p');
           idPara.textContent = `Id: ${version.id}`;
           versionDiv.appendChild(idPara);
+
+          // Add click event listener to toggle open/close details
+          versionDiv.addEventListener('click', () => {
+            versionDiv.classList.toggle('open');
+          });
 
           versionContainer.appendChild(versionDiv);
         });
