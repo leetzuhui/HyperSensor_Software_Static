@@ -1,3 +1,3 @@
-# DuXin_Version_History
+# HyperSensor_Software_Version_History
 
-DuXin Software Version History.
+HyperSensor Software Version History.
