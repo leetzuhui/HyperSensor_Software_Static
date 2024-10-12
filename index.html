@@ -31,7 +31,6 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 22px;
     }
 
     .header h3 {
@@ -138,7 +137,7 @@
           }
 
           // Add click event listener to toggle open/close details with GSAP animation
-          headerDiv.addEventListener('click', () => {
+          versionDiv.addEventListener('click', () => {
             // Close any currently open version
             if (latestVersionDiv && latestVersionDiv !== versionDiv) {
               const previousDetail = latestVersionDiv.querySelector('.detail');
